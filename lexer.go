@@ -6,56 +6,67 @@ import (
 	"unicode"
 )
 
+// Token is the numeric representation of a token, as determined by it's type
 type Token int
 
 const (
+	// EOF is emmited when the end of file is reached
 	EOF = iota
+	// ILLEGAL is emmited when a token isn't recognized
 	ILLEGAL
-	IDENT // stack
-	DIREC // .pos
-	COLON // :
-	HEXCONST
-	DECCONST
+	// IDENT represents any identifier, including instructions and labels
+	IDENT
+	// DIREC represents a directive, of the form '.name'
+	DIREC
+	// COLON is the literal ':'
+	COLON
+	// NUMBER is any numeric constant
 	NUMBER
+	// COMMA is the literal ','
 	COMMA
+	// NEWL is the literal '\n'
 	NEWL
 
-	INSTR
-	REGIST // %r10
-	LPAREN // (
-	RPAREN // )
+	// REGIST is a register of the form '%rXX'
+	REGIST
+	// LPAREN is the literal '('
+	LPAREN
+	// RPAREN is the literal ')'
+	RPAREN
 )
 
 var tokenString = []string{
-	EOF:      "EOF",
-	ILLEGAL:  "ILLEGAL",
-	IDENT:    "IDENT",
-	DIREC:    "DIREC",
-	COLON:    "COLON",
-	HEXCONST: "HEXCONST",
-	DECCONST: "DECCONST",
-	NUMBER:   "NUMBER",
-	COMMA:    "COMMA",
-	NEWL:     "NEWL",
-	INSTR:    "INSTR",
-	REGIST:   "REGIST",
-	LPAREN:   "LPAREN",
-	RPAREN:   "RPAREN",
+	EOF:     "EOF",
+	ILLEGAL: "ILLEGAL",
+	IDENT:   "IDENT",
+	DIREC:   "DIREC",
+	COLON:   "COLON",
+	NUMBER:  "NUMBER",
+	COMMA:   "COMMA",
+	NEWL:    "NEWL",
+	REGIST:  "REGIST",
+	LPAREN:  "LPAREN",
+	RPAREN:  "RPAREN",
 }
 
+// String is the string representation of a Token
 func (t Token) String() string {
 	return tokenString[t]
 }
 
+// Position represents the current position of the lexer in the input file
 type Position struct {
 	Row, Col uint
 }
 
+// Lexer is the main structure with which lexing is made
 type Lexer struct {
 	Pos    Position
 	reader *bufio.Reader
 }
 
+// NewLexer returns a Lexer instance. It receives a reader from which the runes
+// to build the Tokens are read.
 func NewLexer(reader io.Reader) *Lexer {
 	return &Lexer{
 		Pos: Position{
@@ -66,6 +77,7 @@ func NewLexer(reader io.Reader) *Lexer {
 	}
 }
 
+// Lex returns the next token read from the source.
 func (l *Lexer) Lex() (Position, Token, string) {
 	for {
 		r, _, err := l.reader.ReadRune()
