@@ -6,6 +6,8 @@ import (
 	"unicode"
 )
 
+//go:generate goyacc grammar.go.y
+
 // Position represents the current position of the lexer in the input file
 type Position struct {
 	Row, Col uint
