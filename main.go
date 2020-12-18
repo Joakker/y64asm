@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/Joakker/y64asm"
+	"github.com/Joakker/y64asm/parser"
 )
 
 var file io.Reader
@@ -31,10 +31,10 @@ func init() {
 }
 
 func main() {
-	lexer := y64asm.NewLexer(file)
+	l := parser.NewLexer(file)
 	for {
-		pos, tok, lit := lexer.Lex()
-		if tok == y64asm.EOF {
+		pos, tok, lit := l.Lex()
+		if tok == parser.EOF {
 			break
 		}
 		fmt.Printf("%d:%d\t%s\t%s\n", pos.Row, pos.Col, tok, lit)
