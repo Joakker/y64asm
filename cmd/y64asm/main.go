@@ -13,10 +13,13 @@ import (
 var file io.Reader
 
 func init() {
+	silent := flag.Bool("s", false, "Don't output to the terminal")
 	flag.Parse()
 	filename := flag.Arg(0)
 	if len(filename) == 0 {
-		log.Println("Taking input from stdin")
+		if !*silent {
+			log.Println("Taking input from stdin")
+		}
 		file = os.Stdin
 	} else {
 		var err error
