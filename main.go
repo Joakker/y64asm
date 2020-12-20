@@ -14,6 +14,12 @@ var file io.Reader
 
 func init() {
 	silent := flag.Bool("s", false, "Don't output to the terminal")
+	run := flag.NewFlagSet("run", flag.ExitOnError)
+	run.Bool("test", true, "A test flag")
+	switch os.Args[1] {
+	case "run":
+		run.Parse(os.Args[2:])
+	}
 	flag.Parse()
 	filename := flag.Arg(0)
 	if len(filename) == 0 {
