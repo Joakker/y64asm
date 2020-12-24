@@ -1,1 +1,3 @@
-y.*
+parser/*
+!parser/y64asm.g4
+!parser/*.go
