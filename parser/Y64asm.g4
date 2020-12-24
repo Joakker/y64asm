@@ -31,7 +31,17 @@ label:
     ID ':'
     ;
 
-instr:
+instr0:
+    RET
+    | HALT
+    ;
+
+instr1:
+    JMP   refer
+    | CALL refer
+    ;
+
+instr2:
     OP      REG     ',' REG
     | IOP   refer   ',' REG
     | IRMOV refer   ',' REG
@@ -39,8 +49,10 @@ instr:
     | MRMOV refer   ',' REG
     | RMMOV REG     ',' refer
     | RRMOV REG     ',' REG
-    | JMP   refer
-    | CALL refer
-    | RET
-    | HALT
+    ;
+
+instr:
+    instr0
+    | instr1
+    | instr2
     ;
