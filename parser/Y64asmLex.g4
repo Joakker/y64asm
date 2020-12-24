@@ -1,3 +1,15 @@
+grammar Y64asmLex;
+
+PREPROC:
+    '.'
+    (
+        'quad'
+        | 'long'
+        | 'pos'
+        | 'align'
+    )
+    ;
+
 OP:
     (
         'add'
@@ -22,6 +34,51 @@ REG:
     )
     ;
 
+MOV:
+    'mov' 'q'?
+    ;
+
+IRMOV:
+    'ir' MOV
+    ;
+
+RRMOV:
+    'rr' MOV
+    ;
+
+MRMOV:
+    'mr' MOV
+    ;
+
+RMMOV:
+    'rm' MOV
+    ;
+
+RRMOV:
+    'rr' MOV
+    ;
+
+JMP:
+    'j'
+    (
+        'ne'
+        | 'eq'
+        | 'mp'
+    )
+    ;
+
+RET:
+    'ret'
+    ;
+
+CALL:
+    'call'
+    ;
+
+HALT:
+    'halt'
+    ;
+
 NUM:
     '$'? [0-9]+
     | '0x' [0-9a-fA-F]+
@@ -36,4 +93,7 @@ NL:
     ;
 
 WS:
-    ' ' -> skip;
+    [ \t] -> skip;
+
+LINE_COMMENT:
+    '#' ~[\r\n]* -> skip;

@@ -10,9 +10,21 @@ line:
     stmt NL?
     ;
 
+refer:
+    NUM
+    | '(' REG ')'
+    | ID
+    ;
+
 stmt:
-    ID ':'  // A label declaration.
-    | '\t' instr
+    label // A label declaration.
+    | instr
+    | preproc
+    | NL
+    ;
+
+preproc:
+    PREPROC NUM
     ;
 
 label:
@@ -20,8 +32,15 @@ label:
     ;
 
 instr:
-    OP      REG ',' REG
-    | IOP   NUM ',' REG
+    OP      REG     ',' REG
+    | IOP   refer   ',' REG
+    | IRMOV refer   ',' REG
+    | RRMOV REG     ',' REG
+    | MRMOV refer   ',' REG
+    | RMMOV REG     ',' refer
+    | RRMOV REG     ',' REG
+    | JMP   refer
+    | CALL refer
+    | RET
+    | HALT
     ;
-
-// Lexer rules
