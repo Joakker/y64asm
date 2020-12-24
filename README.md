@@ -8,8 +8,7 @@ Simply `go get` it! It doesn't have any dependencies outside of the standard
 library.
 
 ```sh
-go get -u -v "github.com/Joakker/y64asm/cmd/..."
+go get -u -v "github.com/Joakker/y64asm"
 ```
 
-This will add the `y64asm` and `y64run` commands to your `$GOPATH/bin`
-directory.
+This will add the `y64asm` command to your `$GOPATH/bin` directory.
