@@ -24,26 +24,25 @@ func (l *AsmListener) EnterLabel(c *parser.LabelContext) {
 	l.labels[c.ID().GetText()] = l.currAddress
 }
 
-func (l *AsmListener) ExitInstr(c *parser.InstrContext) {
-	i := uint(0)
-	for _, e := range c.GetChildren() {
-		if k, ok := e.(*parser.ReferContext); ok {
-			fmt.Println(k.GetText())
-			i++
-		} else if k, ok := e.(*antlr.TerminalNodeImpl); ok {
-			if k.GetText() == "," {
-				continue
-			}
-			fmt.Println(k.GetText())
-			i++
-		}
-	}
-	fmt.Println(i)
-	l.currAddress += i
+func (l *AsmListener) ExitInstr0(c *parser.Instr0Context) {
+	l.currAddress++
+}
+
+func (l *AsmListener) ExitInstr1(c *parser.Instr1Context) {
+	l.currAddress += 2
+}
+
+func (l *AsmListener) ExitInstr2(c *parser.Instr2Context) {
+	l.currAddress += 3
 }
 
 func main() {
-	is := antlr.NewInputStream("init:\nirmovq 0x10, %r10\nirmovq stack, %rsp\nstack:")
+	is := antlr.NewInputStream(`
+label1:
+	irmovq $10, %r10
+	irmovq 0x10, %r9
+laber2:
+`)
 	lexer := parser.NewY64asmLexer(is)
 	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	p := parser.NewY64asmParser(stream)
@@ -51,6 +50,5 @@ func main() {
 	l := NewAsmListener()
 
 	antlr.ParseTreeWalkerDefault.Walk(l, p.Prog())
-	fmt.Println(l.currAddress)
 	fmt.Println(l.labels)
 }
