@@ -1,7 +1,9 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"os"
 
 	"github.com/Joakker/y64asm/parser"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
@@ -42,6 +44,21 @@ func (l *AsmListener) EnterInstr2(c *parser.Instr2Context) {
 		fmt.Printf("%s number %s into register %s\n",
 			op, k.GetText(), c.GetStop().GetText(),
 		)
+	case parser.Y64asmLexerIRMOV:
+		k, _ := c.GetChild(1).(*parser.ReferContext)
+		fmt.Printf("Moving number %s into register %s\n",
+			k.GetText(), c.GetStop().GetText(),
+		)
+	case parser.Y64asmLexerMRMOV:
+		k, _ := c.GetChild(1).(*parser.ReferContext)
+		fmt.Printf("Moving number at address %s into register %s\n",
+			k.GetText(), c.GetStop().GetText(),
+		)
+	case parser.Y64asmLexerRMMOV:
+		k, _ := c.GetChild(3).(*parser.ReferContext)
+		fmt.Printf("Moving number from register %s into address %s\n",
+			c.GetChild(1), k.GetText(),
+		)
 	}
 }
 
@@ -50,7 +67,16 @@ func (l *AsmListener) EnterInstr1(c *parser.Instr1Context) {
 	case parser.Y64asmLexerCALL:
 		fmt.Printf("Calling function: %s\n", c.GetStop().GetText())
 	case parser.Y64asmLexerJMP:
-		fmt.Printf("Jumping to: %s\n", c.GetStop().GetText())
+		fmt.Printf("Jumping to: %s ", c.GetStop().GetText())
+		switch c.GetStart().GetText() {
+		case "jmp":
+			fmt.Print("unconditionally")
+		case "jne":
+			fmt.Print("if result wasn't 0")
+		case "jeq":
+			fmt.Print("if result was 0")
+		}
+		fmt.Println()
 	}
 }
 
@@ -69,20 +95,22 @@ func (l *AsmListener) ExitInstr1(c *parser.Instr1Context) { l.currAddr += 2 }
 
 func (l *AsmListener) ExitInstr2(c *parser.Instr2Context) { l.currAddr += 3 }
 
+func init() {
+	version := flag.Bool("V", false, "Show version information")
+	flag.Parse()
+	if *version {
+		fmt.Println("v0.0.0")
+		os.Exit(0)
+	} else if flag.NArg() == 0 {
+		os.Exit(1)
+	}
+}
+
 func main() {
-	is := antlr.NewInputStream(`
-.pos 0
-	jmp		label1
-label1:
-	irmovq	$10, %r10
-	irmovq	0x10, %r9
-	add		%r9, %r10
-	call	label2
-	halt
-label2:
-	iadd	0x5, %r10
-	ret
-`)
+	is, err := antlr.NewFileStream(flag.Arg(0))
+	if err != nil {
+		panic(err)
+	}
 	lexer := parser.NewY64asmLexer(is)
 	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	p := parser.NewY64asmParser(stream)
