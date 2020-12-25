@@ -71,6 +71,10 @@ RET:
     'ret'
     ;
 
+NOP:
+    'nop'
+    ;
+
 CALL:
     'call'
     ;

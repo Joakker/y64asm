@@ -34,6 +34,7 @@ label:
 instr0:
     RET
     | HALT
+    | NOP
     ;
 
 instr1:

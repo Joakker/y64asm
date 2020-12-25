@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/Joakker/y64asm/assembler"
 	"github.com/Joakker/y64asm/parser"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 )
@@ -114,9 +115,7 @@ func main() {
 	lexer := parser.NewY64asmLexer(is)
 	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
 	p := parser.NewY64asmParser(stream)
+	a := assembler.New(p)
 
-	l := NewAsmListener()
-
-	antlr.ParseTreeWalkerDefault.Walk(l, p.Prog())
-	fmt.Println(l.labels)
+	fmt.Println(a.Assemble())
 }

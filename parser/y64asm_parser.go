@@ -16,7 +16,7 @@ var _ = reflect.Copy
 var _ = strconv.Itoa
 
 var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 24, 98, 4,
+	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 25, 98, 4,
 	2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7, 4,
 	8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 4, 11, 9, 11, 3, 2, 7, 2, 24, 10, 2,
 	12, 2, 14, 2, 27, 11, 2, 3, 3, 3, 3, 5, 3, 31, 10, 3, 3, 4, 3, 4, 3, 4,
@@ -26,22 +26,22 @@ var parserATN = []uint16{
 	10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10,
 	3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 3,
 	10, 3, 10, 5, 10, 91, 10, 10, 3, 11, 3, 11, 3, 11, 5, 11, 96, 10, 11, 3,
-	11, 2, 2, 12, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 2, 3, 4, 2, 17, 17, 19,
-	19, 2, 103, 2, 25, 3, 2, 2, 2, 4, 28, 3, 2, 2, 2, 6, 37, 3, 2, 2, 2, 8,
+	11, 2, 2, 12, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 2, 3, 4, 2, 17, 18, 20,
+	20, 2, 103, 2, 25, 3, 2, 2, 2, 4, 28, 3, 2, 2, 2, 6, 37, 3, 2, 2, 2, 8,
 	43, 3, 2, 2, 2, 10, 45, 3, 2, 2, 2, 12, 48, 3, 2, 2, 2, 14, 51, 3, 2, 2,
 	2, 16, 57, 3, 2, 2, 2, 18, 90, 3, 2, 2, 2, 20, 95, 3, 2, 2, 2, 22, 24,
 	5, 4, 3, 2, 23, 22, 3, 2, 2, 2, 24, 27, 3, 2, 2, 2, 25, 23, 3, 2, 2, 2,
 	25, 26, 3, 2, 2, 2, 26, 3, 3, 2, 2, 2, 27, 25, 3, 2, 2, 2, 28, 30, 5, 8,
-	5, 2, 29, 31, 7, 22, 2, 2, 30, 29, 3, 2, 2, 2, 30, 31, 3, 2, 2, 2, 31,
-	5, 3, 2, 2, 2, 32, 38, 7, 20, 2, 2, 33, 34, 7, 3, 2, 2, 34, 35, 7, 10,
-	2, 2, 35, 38, 7, 4, 2, 2, 36, 38, 7, 21, 2, 2, 37, 32, 3, 2, 2, 2, 37,
+	5, 2, 29, 31, 7, 23, 2, 2, 30, 29, 3, 2, 2, 2, 30, 31, 3, 2, 2, 2, 31,
+	5, 3, 2, 2, 2, 32, 38, 7, 21, 2, 2, 33, 34, 7, 3, 2, 2, 34, 35, 7, 10,
+	2, 2, 35, 38, 7, 4, 2, 2, 36, 38, 7, 22, 2, 2, 37, 32, 3, 2, 2, 2, 37,
 	33, 3, 2, 2, 2, 37, 36, 3, 2, 2, 2, 38, 7, 3, 2, 2, 2, 39, 44, 5, 12, 7,
-	2, 40, 44, 5, 20, 11, 2, 41, 44, 5, 10, 6, 2, 42, 44, 7, 22, 2, 2, 43,
+	2, 40, 44, 5, 20, 11, 2, 41, 44, 5, 10, 6, 2, 42, 44, 7, 23, 2, 2, 43,
 	39, 3, 2, 2, 2, 43, 40, 3, 2, 2, 2, 43, 41, 3, 2, 2, 2, 43, 42, 3, 2, 2,
-	2, 44, 9, 3, 2, 2, 2, 45, 46, 7, 7, 2, 2, 46, 47, 7, 20, 2, 2, 47, 11,
-	3, 2, 2, 2, 48, 49, 7, 21, 2, 2, 49, 50, 7, 5, 2, 2, 50, 13, 3, 2, 2, 2,
+	2, 44, 9, 3, 2, 2, 2, 45, 46, 7, 7, 2, 2, 46, 47, 7, 21, 2, 2, 47, 11,
+	3, 2, 2, 2, 48, 49, 7, 22, 2, 2, 49, 50, 7, 5, 2, 2, 50, 13, 3, 2, 2, 2,
 	51, 52, 9, 2, 2, 2, 52, 15, 3, 2, 2, 2, 53, 54, 7, 16, 2, 2, 54, 58, 5,
-	6, 4, 2, 55, 56, 7, 18, 2, 2, 56, 58, 5, 6, 4, 2, 57, 53, 3, 2, 2, 2, 57,
+	6, 4, 2, 55, 56, 7, 19, 2, 2, 56, 58, 5, 6, 4, 2, 57, 53, 3, 2, 2, 2, 57,
 	55, 3, 2, 2, 2, 58, 17, 3, 2, 2, 2, 59, 60, 7, 8, 2, 2, 60, 61, 7, 10,
 	2, 2, 61, 62, 7, 6, 2, 2, 62, 91, 7, 10, 2, 2, 63, 64, 7, 9, 2, 2, 64,
 	65, 5, 6, 4, 2, 65, 66, 7, 6, 2, 2, 66, 67, 7, 10, 2, 2, 67, 91, 3, 2,
@@ -59,12 +59,12 @@ var parserATN = []uint16{
 }
 var literalNames = []string{
 	"", "'('", "')'", "':'", "','", "", "", "", "", "", "", "", "", "", "",
-	"'ret'", "'call'", "'halt'",
+	"'ret'", "'nop'", "'call'", "'halt'",
 }
 var symbolicNames = []string{
 	"", "", "", "", "", "PREPROC", "OP", "IOP", "REG", "MOV", "IRMOV", "RRMOV",
-	"MRMOV", "RMMOV", "JMP", "RET", "CALL", "HALT", "NUM", "ID", "NL", "WS",
-	"LINE_COMMENT",
+	"MRMOV", "RMMOV", "JMP", "RET", "NOP", "CALL", "HALT", "NUM", "ID", "NL",
+	"WS", "LINE_COMMENT",
 }
 
 var ruleNames = []string{
@@ -119,13 +119,14 @@ const (
 	Y64asmParserRMMOV        = 13
 	Y64asmParserJMP          = 14
 	Y64asmParserRET          = 15
-	Y64asmParserCALL         = 16
-	Y64asmParserHALT         = 17
-	Y64asmParserNUM          = 18
-	Y64asmParserID           = 19
-	Y64asmParserNL           = 20
-	Y64asmParserWS           = 21
-	Y64asmParserLINE_COMMENT = 22
+	Y64asmParserNOP          = 16
+	Y64asmParserCALL         = 17
+	Y64asmParserHALT         = 18
+	Y64asmParserNUM          = 19
+	Y64asmParserID           = 20
+	Y64asmParserNL           = 21
+	Y64asmParserWS           = 22
+	Y64asmParserLINE_COMMENT = 23
 )
 
 // Y64asmParser rules.
@@ -249,7 +250,7 @@ func (p *Y64asmParser) Prog() (localctx IProgContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for ((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<Y64asmParserPREPROC)|(1<<Y64asmParserOP)|(1<<Y64asmParserIOP)|(1<<Y64asmParserIRMOV)|(1<<Y64asmParserRRMOV)|(1<<Y64asmParserMRMOV)|(1<<Y64asmParserRMMOV)|(1<<Y64asmParserJMP)|(1<<Y64asmParserRET)|(1<<Y64asmParserCALL)|(1<<Y64asmParserHALT)|(1<<Y64asmParserID)|(1<<Y64asmParserNL))) != 0 {
+	for ((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<Y64asmParserPREPROC)|(1<<Y64asmParserOP)|(1<<Y64asmParserIOP)|(1<<Y64asmParserIRMOV)|(1<<Y64asmParserRRMOV)|(1<<Y64asmParserMRMOV)|(1<<Y64asmParserRMMOV)|(1<<Y64asmParserJMP)|(1<<Y64asmParserRET)|(1<<Y64asmParserNOP)|(1<<Y64asmParserCALL)|(1<<Y64asmParserHALT)|(1<<Y64asmParserID)|(1<<Y64asmParserNL))) != 0 {
 		{
 			p.SetState(20)
 			p.Line()
@@ -627,7 +628,7 @@ func (p *Y64asmParser) Stmt() (localctx IStmtContext) {
 			p.Label()
 		}
 
-	case Y64asmParserOP, Y64asmParserIOP, Y64asmParserIRMOV, Y64asmParserRRMOV, Y64asmParserMRMOV, Y64asmParserRMMOV, Y64asmParserJMP, Y64asmParserRET, Y64asmParserCALL, Y64asmParserHALT:
+	case Y64asmParserOP, Y64asmParserIOP, Y64asmParserIRMOV, Y64asmParserRRMOV, Y64asmParserMRMOV, Y64asmParserRMMOV, Y64asmParserJMP, Y64asmParserRET, Y64asmParserNOP, Y64asmParserCALL, Y64asmParserHALT:
 		p.EnterOuterAlt(localctx, 2)
 		{
 			p.SetState(38)
@@ -895,6 +896,10 @@ func (s *Instr0Context) HALT() antlr.TerminalNode {
 	return s.GetToken(Y64asmParserHALT, 0)
 }
 
+func (s *Instr0Context) NOP() antlr.TerminalNode {
+	return s.GetToken(Y64asmParserNOP, 0)
+}
+
 func (s *Instr0Context) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -941,7 +946,7 @@ func (p *Y64asmParser) Instr0() (localctx IInstr0Context) {
 		p.SetState(49)
 		_la = p.GetTokenStream().LA(1)
 
-		if !(_la == Y64asmParserRET || _la == Y64asmParserHALT) {
+		if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<Y64asmParserRET)|(1<<Y64asmParserNOP)|(1<<Y64asmParserHALT))) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -1454,7 +1459,7 @@ func (p *Y64asmParser) Instr() (localctx IInstrContext) {
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
-	case Y64asmParserRET, Y64asmParserHALT:
+	case Y64asmParserRET, Y64asmParserNOP, Y64asmParserHALT:
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(90)
